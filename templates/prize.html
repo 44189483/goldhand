@@ -1,0 +1,98 @@
+{{include file="head.html"}}
+		<div class="container">
+			<div class="main">
+				<div class="header">
+					<div class="header-left"></div>
+					<div class="header-right"></div>
+				</div>
+				<div class="prize-img">
+					<img class="{{if $user.getAward == 1}}prize-img-gray{{/if}}" src="upload/{{$pro.prizeImg}}" width="" />
+					<div class="accepted-img" {{if $user.getAward == 1}}style="display: block"{{/if}}>已领奖</div>
+				</div>
+				<div class="prize-con">
+					<div class="getPrize">您获得<span>{{$pro.prizeName}}</span></div>
+					<div class="prize-con-info">
+						<div>姓名：</div>
+						<div>{{$user.userName}}</div>
+					</div>
+					<div class="prize-con-info">
+						<div>电话：</div>
+						<div>{{$user.userPhone}}</div>
+					</div>
+					<div class="prize-con-info">
+						<div>公司：</div>
+						<div>{{$user.userCompany}}</div>
+					</div>
+					<div class="prize-btn">
+						{{if $user.getAward == 1}}
+							<div class="before-accept">已领过奖</div>
+						{{else}}
+							<div class="acceptPrize before-accept">确认领奖</div>
+						{{/if}}
+						<div class="before-accept"><a href="game.php">再次挑战</a></div>
+						<div class="after-accept"><a href="game.php">再次挑战</a></div>
+					</div>
+					<div class="prize-declare">*活动中奖者请于6月16日--19日，凭此页面<br>到软交会现场领奖区（世博广场一层）领取奖品</div>
+				</div>
+			</div>
+			<div class="rollBg rollBgAnimation"></div>
+		</div>
+		<div class="popUp">
+			<div class="popUp-container">
+				<div class="popUp-container-title">提&nbsp;&nbsp;示</div>
+				<div class="popUp-container-txt">只有工作人员才能点击“确认领奖”按钮，</div>
+				<div class="popUp-container-txt fontBold">请您不要自己点击。</div>
+				<div class="popUp-container-txt marginT60">是否确认要领取?</div>
+				<div class="popUp-container-btn">
+					<div class="btn-ok"><a href="#">确认</a></div>
+					<div class="btn-cancle">取消</div>
+				</div>
+			</div>
+		</div>
+{{include file="foot.html"}}
+<script type="text/javascript">
+	wx.ready(function () {
+
+	    var shareTitle = '完美的10秒，完美的10秒，完美的10秒，金手指果然名不虚传，快去领取你的奖励吧！';
+		var imgUrl = "http://rjh.aidimedia.cn/gold-hand/templates/img/share.jpg";  
+		var lineLink = "http://rjh.aidimedia.cn/gold-hand/";
+
+		// 朋友
+		wx.onMenuShareAppMessage({
+
+		        title: '金手指', // 分享标题
+		        desc: shareTitle, // 分享描述
+		        link: lineLink, // 分享链接
+		        imgUrl: imgUrl, // 分享图标
+		        type: '', // 分享类型,music、video或link，不填默认为link
+		        dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+		        trigger: function () {
+				},
+		        success: function () { 
+
+		            $.post("http://rjh.aidimedia.cn/gold-hand/ajax.php?type=shared");
+		        
+		        },
+		        cancel: function () { 
+		            // 取消分享后执行的回调函数
+		        }
+		});       
+		// 朋友圈
+		wx.onMenuShareTimeline({
+		        title: shareTitle, // 分享标题
+		        link: lineLink, // 分享链接
+		        imgUrl: imgUrl, // 分享图标
+		        trigger: function () {
+				},
+		        success: function () {
+
+		            $.post("http://rjh.aidimedia.cn/gold-hand/ajax.php?type=shared");
+		                
+		        },
+		        cancel: function () { 
+		            // 用户取消分享后执行的回调函数
+		        }           
+		});
+
+	});
+</script>

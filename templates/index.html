@@ -1,0 +1,49 @@
+{{include file="head.html"}}
+		<div class="container">
+			<div class="main">
+				<div class="header">
+					<div class="header-left"></div>
+					<div class="header-right"></div>
+				</div>
+				<div class="round"></div>
+				<div class="getInfo">
+					<div class='index-end'>本次活动已结束</div>
+					<!--<form name="form" method="POST" action="">
+						<div class="input name"><input class="" name="userName"  type="text" placeholder="请输入您的姓名"></div>
+						<div class="input company" ><input class="" name="userCompany" type="text" placeholder="请输入您的公司名称"></div>
+						<div class="input phone"><input class="" name="userPhone" type="text" placeholder="请输入您的手机号"></div>
+						<div class="btn">
+							<button onclick="return checkform(this.form)">开始</button>
+						</div>
+					</form>-->
+				</div>
+			</div>
+			<div class="rollBg rollBgAnimation"></div>
+		</div>
+		<div class="loginPop">
+			<div class="loginPop-container">
+				<div class="loginPop-container-title">错误提示</div>
+				<div class="loginPop-container-line"></div>
+				<div class="loginPop-container-text">请您填写正确的</div>
+				<div class="loginPop-container-error">姓名、公司、电话</div>
+				<div class="loginPop-container-text">以便领奖哦！</div>
+			</div>
+		</div>
+{{include file="foot.html"}}
+<script> 
+	//隐藏右上角菜单
+	function onBridgeReady(){
+		WeixinJSBridge.call('hideOptionMenu');
+	}
+
+	if (typeof WeixinJSBridge == "undefined"){
+		if( document.addEventListener ){
+			document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
+		}else if (document.attachEvent){
+			document.attachEvent('WeixinJSBridgeReady', onBridgeReady); 
+			document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
+		}
+	}else{
+		onBridgeReady();
+	}
+</script>

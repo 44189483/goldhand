@@ -1,0 +1,20 @@
+        <script type="text/javascript" src="http://cdnjs.gtimg.com/cdnjs/libs/jquery/1.11.1/jquery.min.js" ></script>
+		<script type="text/javascript" src="templates/js/index.js" ></script>
+		<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+		<script>
+		    wx.config({
+		        debug:      {{$config.debug}},
+		        appId:      {{$config.appId}},
+		        timestamp:  '{{$config.timestamp}}',
+		        nonceStr:   {{$config.nonceStr}},
+		        signature:  {{$config.signature}},
+		        jsApiList:  [{{$config.jsApiList}}]
+		    });
+		    $(function(){
+		    	$("#cnzz_stat_icon_1259081432").hide();
+		    });
+		</script>
+
+		<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1259081432'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1259081432%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+	</body>
+</html>

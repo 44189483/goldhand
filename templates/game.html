@@ -1,0 +1,151 @@
+{{include file="head.html"}}
+		<div class="container">
+			<div class="main">
+				<div class="header">
+					<div class="header-left"></div>
+					<div class="header-right"></div>
+				</div>
+				<div class="roundTime">
+					<div class="roundTime-rotate rotateAnimation"></div>
+					<div class="roundTime-tip">按够10秒成为金手指<br>赠送自拍杆一个！</div>
+					<div class="time">
+						<div class="time-title">计时（秒）</div>
+						<div class="time-num">0.00</div>
+					</div>
+				</div>
+				<div class="handimg">
+					<div class="hand"><img src="templates/img/hand.png"></div>
+					<a class="handover"><img src="templates/img/handover.png"></a>
+				</div>
+				<div class="touch-tipText">长按指纹按钮开始游戏<br>预估到10秒 松开手指</div>
+				<div class="lessTouch">
+					<div class="getTime-text">距离金手指还差<span class="timeDis"></span></div>
+					<div class="getTime-text">英雄请重新来过！</div>
+					<div class="getTime-btn">
+						<div><a href="#" class="again">再次挑战</a></div>
+						<div class="btn_again onShare"><a href="javascript:;">分享成绩</a></div>
+					</div>
+					<div class="seePrize"></div>
+				</div>
+				<div class="bestTouch">
+					<div class="bestTouch-text">
+						恭喜您！<br />
+						您就是传说中的金手指
+					</div>
+					<div class="bestTouch-btn onShare">分享后查询奖品</div>
+					<div class="seePrize"></div>
+				</div>
+				<div class="moreTouch">
+					<div class="getTime-text">超过金手指<span class="timeDis"></span></div>
+					<div class="getTime-text">英雄请重新来过！</div>
+					<div class="getTime-btn">
+						<div><a href="#" class="again">再次挑战</a></div>
+						<div class="btn_again onShare"><a href="javascript:;">分享成绩</a></div>
+					</div>
+					<div class="seePrize"></div>
+				</div>
+			</div>
+			<div class="rollBg rollBgAnimation"></div>
+		</div>
+        <div class="alertpage">
+            <!-- 有机会显示图片和文字 -->
+            <div class="containerTop"></div>
+            <div class="alertpage-container">
+	            <div class="alertpage-container-title">
+	            	<div class="container-title-text">请点击右上角</div>
+	            	<div class="container-title-pointer">
+	            		<ul>
+	            			<li></li>
+	            			<li></li>
+	            			<li></li>
+	            		</ul>
+	            		
+	            	</div>
+	            	<div class="clearFix"></div>
+	            </div>
+	            <div class="alertpage-container-line"></div>
+	            <div class="alertpage-container-text">
+	            	将它发送给指定朋友或朋友圈，<br />
+					只有分享后才能获得奖品。
+	            </div>
+            </div>
+        </div>
+		<span class="status" style="display:none"></span>
+{{include file="foot.html"}}
+<script> 
+
+	//隐藏右上角菜单
+	function onBridgeReady(){
+		WeixinJSBridge.call('hideOptionMenu');
+	}
+
+	if (typeof WeixinJSBridge == "undefined"){
+		if( document.addEventListener ){
+			document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
+		}else if (document.attachEvent){
+			document.attachEvent('WeixinJSBridgeReady', onBridgeReady); 
+			document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
+		}
+	}else{
+		onBridgeReady();
+	}
+
+	$(".again").click(function(){
+		WeixinJSBridge.call('hideOptionMenu');
+	});
+
+    $('.onShare').click(function () {
+
+    	WeixinJSBridge.call('showOptionMenu');
+
+    	share();
+
+    }); 
+
+/*
+    wx.ready(function () {
+
+	    var shareTitle = '金手指';
+		var imgUrl = "http://rjh.aidimedia.cn/gold-hand/templates/img/share.jpg";  
+		var lineLink = "http://rjh.aidimedia.cn/gold-hand/";
+
+		// 朋友
+		wx.onMenuShareAppMessage({
+
+		        title: '金手指', // 分享标题
+		        desc: shareTitle, // 分享描述
+		        link: lineLink, // 分享链接
+		        imgUrl: imgUrl, // 分享图标
+		        type: '', // 分享类型,music、video或link，不填默认为link
+		        dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+		        trigger: function () {
+				},
+		        success: function () { 
+
+		            $.post("http://rjh.aidimedia.cn/gold-hand/ajax.php?type=shared");
+		        
+		        },
+		        cancel: function () { 
+		            // 取消分享后执行的回调函数
+		        }
+		});       
+		// 朋友圈
+		wx.onMenuShareTimeline({
+		        title: shareTitle, // 分享标题
+		        link: lineLink, // 分享链接
+		        imgUrl: imgUrl, // 分享图标
+		        trigger: function () {
+				},
+		        success: function () {
+
+		            $.post("http://rjh.aidimedia.cn/gold-hand/ajax.php?type=shared");
+		                
+		        },
+		        cancel: function () { 
+		            // 用户取消分享后执行的回调函数
+		        }           
+		});
+
+	});
+*/
+</script>  
